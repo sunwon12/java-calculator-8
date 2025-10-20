@@ -7,12 +7,13 @@ public class InputView {
 
     public String readInput() {
         System.out.println(INPUT_PROMPT_MESSAGE);
-        String input = Console.readLine();
 
-        if (input == null) {
-            throw new IllegalArgumentException("입력값이 null입니다.");
+        try {
+            String input = Console.readLine();
+
+            return input;
+        } catch (Exception e) {
+            throw new IllegalArgumentException("입력값이 비어있습니다.");
         }
-
-        return input;
     }
 }
