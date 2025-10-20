@@ -2,6 +2,7 @@ package calculator.domain;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Delimiters {
@@ -27,11 +28,7 @@ public class Delimiters {
     public String toRegexPattern() {
         return values.stream()
                 .map(Delimiter::value)
-                .map(this::escapeRegexSpecialChars)
+                .map(Pattern::quote)
                 .collect(Collectors.joining("|"));
-    }
-
-    private String escapeRegexSpecialChars(String value) {
-        return value.replaceAll("([\\[\\]\\(\\)\\{\\}\\.\\*\\+\\?\\^\\$\\|])", "\\\\$1");
     }
 }
