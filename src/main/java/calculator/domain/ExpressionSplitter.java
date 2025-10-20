@@ -21,12 +21,13 @@ public class ExpressionSplitter {
         validateCustomDelimiterSyntax(input);
 
         int suffixIndex = input.indexOf(CUSTOM_DELIMITER_SUFFIX);
-        String delimiterPart = input.substring(CUSTOM_DELIMITER_PREFIX.length(), suffixIndex);
+        String rawDelimiter = input.substring(CUSTOM_DELIMITER_PREFIX.length(), suffixIndex);
         String numberPart = input.substring(suffixIndex + 1);
 
         validateNumberPart(numberPart);
 
-        return new ExpressionComponents(delimiterPart, numberPart);
+        Delimiter delimiter = new Delimiter(rawDelimiter);
+        return new ExpressionComponents(delimiter, numberPart);
     }
 
     private void validateCustomDelimiterSyntax(String input) {
