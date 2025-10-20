@@ -1,6 +1,6 @@
 
 ### 🌟 전체 메시지 흐름 
-
+![img.png](img.png)
 1.  **`CalculatorApplication`**: 애플리케이션의 시작과 끝, 그리고 객체 간의 흐름을 총괄합니다.
 
 2.  **`CalculatorApplication` → `InputView`**: `readInput()` 메시지를 보내 사용자 입력을 요청합니다.
@@ -42,3 +42,4 @@
 20. **`CalculatorApplication` → `OutputView`**: `printResult(6)` 메시지를 보내 출력을 요청합니다.
 
 21. **`OutputView` → 사용자**: 화면에 최종 결과 `"결과 : 6"`을 출력합니다.
+

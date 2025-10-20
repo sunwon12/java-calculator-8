@@ -1,4 +1,5 @@
 # java-calculator-precourse
+![img.png](docs/img.png)
 ---
 ## **기능 요구 사항**
 
