@@ -34,7 +34,7 @@ public class ExpressionSplitter {
     }
 
     private void validateCustomDelimiterSyntax(String input) {
-        if (input.indexOf(NEWLINE_ACTUAL) == -1) {
+        if (!input.contains(NEWLINE_ACTUAL)) {
             throw new IllegalArgumentException("커스텀 구분자 정의의 끝을 나타내는 '\\n' 문자가 누락되었습니다.");
         }
     }
