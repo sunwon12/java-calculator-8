@@ -10,6 +10,7 @@ public class CalculatorApplication {
     }
 
     public void run() {
-        inputView.printInputPrompt();
+        String rawInput = inputView.readInput();
+        // TODO: 계산 로직 추가
     }
 }
