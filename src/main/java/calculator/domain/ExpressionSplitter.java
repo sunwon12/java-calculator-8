@@ -45,14 +45,8 @@ public class ExpressionSplitter {
     }
 
     private void validateNumberPart(String numberPart) {
-        if (numberPart == null || numberPart.isEmpty()) {
+        if (numberPart == null || numberPart.trim().isEmpty()) {
             throw new IllegalArgumentException("숫자 부분이 비어있을 수 없습니다.");
-        }
-        if (!Character.isDigit(numberPart.charAt(0))) {
-            throw new IllegalArgumentException("숫자 부분은 숫자로 시작해야 합니다.");
-        }
-        if (!Character.isDigit(numberPart.charAt(numberPart.length() - 1))) {
-            throw new IllegalArgumentException("숫자 부분은 숫자로 끝나야 합니다.");
         }
     }
 }
