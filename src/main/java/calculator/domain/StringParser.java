@@ -17,6 +17,7 @@ public class StringParser {
 
         String regexPattern = delimiters.toRegexPattern();
         return Arrays.stream(numberPart.split(regexPattern))
+                .map(String::trim)
                 .filter(token -> !token.isEmpty())
                 .map(this::parseNumber)
                 .toList();
