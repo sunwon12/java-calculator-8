@@ -4,25 +4,28 @@ import java.util.Objects;
 
 public class ExpressionSplitter {
     private static final String CUSTOM_DELIMITER_PREFIX = "//";
-    private static final char CUSTOM_DELIMITER_SUFFIX = '\n';
+    private static final String NEWLINE_ACTUAL = "\n";
+    private static final String NEWLINE_LITERAL = "\\n";
 
     public ExpressionComponents split(String input) {
         if (Objects.isNull(input) || input.isEmpty()) {
             throw new IllegalArgumentException("식을 입력해주세요.");
         }
 
-        if (input.startsWith(CUSTOM_DELIMITER_PREFIX)) {
-            return splitWithCustomDelimiter(input);
+        String normalizedInput = input.replace(NEWLINE_LITERAL, NEWLINE_ACTUAL);
+
+        if (normalizedInput.startsWith(CUSTOM_DELIMITER_PREFIX)) {
+            return splitWithCustomDelimiter(normalizedInput);
         }
-        return splitWithDefaultDelimiter(input);
+        return splitWithDefaultDelimiter(normalizedInput);
     }
 
     private ExpressionComponents splitWithCustomDelimiter(String input) {
         validateCustomDelimiterSyntax(input);
 
-        int suffixIndex = input.indexOf(CUSTOM_DELIMITER_SUFFIX);
+        int suffixIndex = input.indexOf(NEWLINE_ACTUAL);
         String rawDelimiter = input.substring(CUSTOM_DELIMITER_PREFIX.length(), suffixIndex);
-        String numberPart = input.substring(suffixIndex + 1);
+        String numberPart = input.substring(suffixIndex + NEWLINE_ACTUAL.length());
 
         validateNumberPart(numberPart);
 
@@ -31,7 +34,7 @@ public class ExpressionSplitter {
     }
 
     private void validateCustomDelimiterSyntax(String input) {
-        if (input.indexOf(CUSTOM_DELIMITER_SUFFIX) == -1) {
+        if (input.indexOf(NEWLINE_ACTUAL) == -1) {
             throw new IllegalArgumentException("커스텀 구분자 정의의 끝을 나타내는 '\\n' 문자가 누락되었습니다.");
         }
     }
